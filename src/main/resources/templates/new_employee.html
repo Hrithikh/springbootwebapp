@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	
+     <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+	<script type="text/javascript"></script>
+    <style type="text/css">
+	.red{
+		color:red;
+	}
+	.blank{
+		border: 1px solid #e74c3c;
+		box-shadow:0px 0px 0px 1px #e74c3c;
+	}
+	</style>
+
+
+</head>
+<meta charset="ISO-8859-1">
+<title>Employee Management System</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<!-- <script src="js/ext.js"></script> -->
+	<div class="container">
+	
+				
+		<h1>Employee Management System</h1>
+		<hr>
+		<h2>Save Employee</h2>
+
+		<form action="#" th:action="@{/saveEmployee}" th:object="${employee}"
+			method="POST">
+			<label>First Name</label><span class="red">*</span><small></small>
+			<input type="text" 	 th:field="*{firstName}"
+				placeholder="Employee First Name" class="form-control mb-4 col-4"
+				   minlength="3">
+				<h5 id="firstnamecheck"></h5>
+				
+
+				<label>Last Name</label><span class="red">*</span><small></small>
+				<input type="text"  th:field="*{lastName}"
+				placeholder="Employee Last Name" class="form-control mb-4 col-4" minlength="3" >
+				<h5 id="lastnamecheck"></h5>
+
+				<label>Email id</label><span class="red">*</span><small></small>
+				<input type="email" th:field="*{email}"
+				placeholder="Employee Email" class="form-control mb-4 col-4" minlength="3">
+				<h5 id="emailcheck"></h5>
+
+
+
+
+				<label>Work Details</label><span class="red">*</span><small></small>
+				<br>
+				<select id="work">
+					<option value="select">--select work--</option>
+					<option value="Software Tester">Software Tester</option>
+					<option value="Business Development">Business Development</option>
+					<option value="Graduate Trainee">Graduate Trainee</option>
+					<option value="project manager">Project manager</option>
+				</select>
+
+				<!-- <input type="text" readonly="readonly" id="txtresults"/> -->
+
+				<br><br>
+				<button type="submit" id="submitbtn" class="btn btn-info col-2"> Save Employee</button>
+			
+		</form>
+		
+		<hr>
+		
+		<a th:href = "@{/}"> Back to Employee List</a>
+	</div>
+
+
+
+	<script type="text/javascript">
+
+
+    $(document).ready(function(){
+		
+    $('#firstnamecheck ').hide();
+	$('#lastnamecheck ').hide();
+	$('#emailcheck ').hide();
+
+	var first_error=true;
+	var last_error=true;
+	var email_error=true;
+	
+	$('#firstName').keyup(function(){
+      firstname_check();
+	
+	});
+     
+	
+	function firstname_check(){
+	var first_val=$('#firstName').val();
+
+	if(first_val.length==""){
+		$('#firstnamecheck').show();
+		$('#firstnamecheck').html("please fill first name");
+		$('#firstnamecheck').focus();
+		$('#firstnamecheck').css("color","red");
+		first_error=false;
+		return false; 
+	}	 
+	else{
+		$('#firstnamecheck').hide();
+	}
+	
+
+
+	if((first_val.length<3 )|| (first_val.length>10)){
+		$('#firstnamecheck').show();
+		$('#firstnamecheck').html("**FirstName  Length must be between 3 and 10");
+		$('#firstnamecheck').focus();
+		$('#firstnamecheck').css("color","red");
+		first_error=false;
+		return false; 
+	}	 
+	else{
+		$('#firstnamecheck').hide();
+	}
+	 }
+
+      $('#lastName').keyup(function(){
+        lastname_check(); 
+	  });
+
+	  function lastname_check(){
+		var last_val=$('#lastName').val();
+
+		if(last_val.length==""){
+		$('#lastnamecheck').show();
+		$('#lastnamecheck').html("please fill last name");
+		$('#lastnamecheck').focus();
+		$('#lastnamecheck').css("color","red");
+		last_error=false;
+		return false; 
+	}	 
+	else{
+		$('#lastnamecheck').hide();
+	}
+	
+
+
+		if((last_val.length<3 )|| (last_val.length>10)){
+			$('#lastnamecheck').show();
+		$('#lastnamecheck').html("**Last name Length must be between 3 and 10");
+		$('#lastnamecheck').focus();
+		$('#lastnamecheck').css("color","red");
+		last_error=false;
+		return false;
+	  }
+	  else{
+		$('#lastnamecheck').hide();
+	}
+	 }
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 $('#email').keyup(function(){
+        email_check(); 
+	  });
+      
+	  function email_check(){
+		var email_val=$('#email').val();
+
+		// var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+
+		if(email_val.length==""){
+		$('#emailcheck').show();
+		$('#emailcheck').html("please fill email");
+		$('#emailcheck').focus();
+		$('#emailcheck').css("color","red");
+		email_error=false;
+		return false; 
+	}	 
+	else{
+		$('#emailcheck').hide();
+	}
+	
+
+
+		if((email_val.length<5 )|| (email_val.length>50)){
+		$('#emailcheck').show();
+		$('#emailcheck').html("**email id is not valid ");
+		$('#emailcheck').focus();
+		$('#emailcheck').css("color","red");
+		email_error=false;
+		return false;
+	  }
+	  else{
+		$('#emailcheck').hide();
+	}
+	 }
+         
+       $('#submitbtn').click(function(){
+        
+		 first_error=true;
+	  last_error=true;
+	  email_error=true;
+	
+	 firstname_check();
+	 lastname_check();
+	 email_check();
+
+	 if((first_error==true) && (last_error==true) && (email_error==true)){
+          return true;
+	 }
+	else{
+		return false; 
+	}
+	})
+
+
+   
+
+        });
+
+</script>
+</body>
+</html>
