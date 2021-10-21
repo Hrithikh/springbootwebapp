@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.hrithik.springboot.model.Employee;
+import net.hrithik.springboot.model.workdetails;
 import net.hrithik.springboot.service.EmployeeService;
 
 @Controller
@@ -30,9 +31,16 @@ public class EmployeeController {
 	@GetMapping("/showNewEmployeeForm")
 	// display the new employee form
 	public String showNewEmployeeForm(Model model) {
+
+		// Employee.getworkdetails();
+		// model.addAttribute("workName", workdetails.values());
+
 		// create model attribute to bind form data
 		Employee employee = new Employee();
 		model.addAttribute("employee", employee);
+
+		employee.getworkdetails();
+		model.addAttribute("workName", workdetails.values());
 		return "new_employee";
 	}
 

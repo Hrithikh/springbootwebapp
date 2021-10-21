@@ -68,13 +68,28 @@
 
 				<label>Work Details</label><span class="red">*</span><small></small>
 				<br>
-				<select id="work">
-					<option value="select">--select work--</option>
+				
+				<select th:field="*{workdetails}"  >
+					<option value="">--Select--</option>
+				<option th:each="workdetails:${workName}"
+				 th:value="${workdetails}"
+				th:utext="${workdetails}"/>
+				
+                   
+
+				</option>
+				</select>
+					
+                    
+              
+               
+				<!-- <option value="select">--select work--</option>
 					<option value="Software Tester">Software Tester</option>
 					<option value="Business Development">Business Development</option>
 					<option value="Graduate Trainee">Graduate Trainee</option>
 					<option value="project manager">Project manager</option>
-				</select>
+				</select>  -->
+
 
 				<!-- <input type="text" readonly="readonly" id="txtresults"/> -->
 
@@ -98,11 +113,13 @@
     $('#firstnamecheck ').hide();
 	$('#lastnamecheck ').hide();
 	$('#emailcheck ').hide();
+	$('workdetailscheck').hide();
 
 	var first_error=true;
 	var last_error=true;
 	var email_error=true;
-	
+	var workdetails_error=true;
+
 	$('#firstName').keyup(function(){
       firstname_check();
 	
@@ -234,6 +251,41 @@
 		$('#emailcheck').hide();
 	}
 	 }
+
+
+
+
+	 
+	$('#workdetails').keyup(function(){
+      workdetails_check();
+	
+	});
+     
+	
+	function workdetails_check(){
+	var work_val=$('#workdetails').val();
+
+	if(work_val.length==""){
+		$('#workdetailscheck').show();
+		$('#workdetailscheck').html("please input value");
+		$('#workdetailscheck').focus();
+		$('#workdetailscheck').css("color","red");
+		workdetails_error=false;
+		return false; 
+	}	 
+	else{
+		$('#workdetailscheck').hide();
+	}
+}
+
+
+
+
+
+	 
+
+
+
          
        $('#submitbtn').click(function(){
         
@@ -252,6 +304,10 @@
 		return false; 
 	}
 	})
+
+
+
+
 
 
    

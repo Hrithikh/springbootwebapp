@@ -24,6 +24,10 @@ public class Employee {
 	@Column(name = "email")
 	private String email;
 
+	// @Column(name = "workdetails")
+	// private String workdetails;
+	public workdetails workDetails;
+
 	public long getId() {
 		return id;
 	}
@@ -55,4 +59,20 @@ public class Employee {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	// public String getworkdetails() {
+	// return workdetails;
+	// }
+
+	// public void setworkdetails(String workdetails) {
+	// this.workdetails = workdetails;
+	// }
+	public workdetails getworkdetails() {
+		return workDetails;
+	}
+
+	public void setworkdetails(workdetails workDetails) {
+		this.workDetails = workDetails;
+	}
+
 }
